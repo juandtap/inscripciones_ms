@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ups.inscripciones_ms.model.Estudiante;
-import ups.inscripciones_ms.services.EstudianteService;
+import ups.inscripciones_ms.model.Inscripcion;
+import ups.inscripciones_ms.services.InscripcionService;
 
 import java.net.URI;
 import java.util.List;
@@ -13,23 +13,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/micro3/inscripciones")
 public class InscripcionController {
+
+
     @Autowired
-    private EstudianteService estudianteService;
+    private InscripcionService inscripcionService;
 
     @PostMapping("/guardar")
-    public ResponseEntity<Estudiante> save(@RequestBody Estudiante estudiante){
-        Estudiante estudianteTemp = estudianteService.create(estudiante);
+    public ResponseEntity<Inscripcion> save(@RequestBody Inscripcion inscripcion){
+        Inscripcion inscripcionTemp = inscripcionService.create(inscripcion);
 
         try {
-            return ResponseEntity.created(new URI("/micro3/inscripciones/guardar" +estudianteTemp.getCedula())).body(estudianteTemp);
+            return ResponseEntity.created(new URI("/micro3/inscripciones/guardar" +inscripcionTemp.getCedula())).body(inscripcionTemp);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Estudiante>> listAll() {
-        return ResponseEntity.ok(estudianteService.listEstudiantes());
+    public ResponseEntity<List<Inscripcion>> listAll() {
+        return ResponseEntity.ok(inscripcionService.listInscripcion());
     }
 
 
