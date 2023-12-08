@@ -32,3 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 DB/micro3db.mv.db
+DB/micro3db.trace.db
+DB/micro3db.mv.db
+DB/micro3db.mv.db

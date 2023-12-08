@@ -1,8 +1,6 @@
 package ups.inscripciones_ms.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -10,13 +8,13 @@ import java.time.LocalDateTime;
 @Table(name = "Inscripcion")
 public class Inscripcion {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String cedula;
     private String nombre;
     private String apellido;
-    private String curso;
-    private String profesor;
+    private String cursos;
 
     private LocalDateTime fechaInscripcion;
 
@@ -55,20 +53,12 @@ public class Inscripcion {
         this.apellido = apellido;
     }
 
-    public String getProfesor() {
-        return profesor;
+    public String getCursos() {
+        return cursos;
     }
 
-    public void setProfesor(String profesor) {
-        this.profesor = profesor;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
+    public void setCursos(String cursos) {
+        this.cursos = cursos;
     }
 
     public LocalDateTime getFechaInscripcion() {
